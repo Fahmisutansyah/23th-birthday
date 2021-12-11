@@ -43,4 +43,20 @@ export const useStore = create((set, get) => ({
       birthdayWish: value,
     });
   },
+
+  getAll: () => {
+    return {
+      name: get().name,
+      dob: get().dob,
+      address: get().address,
+      gender: get().gender,
+      birthdayWish: get().birthdayWish,
+      future: get().future,
+      reason: get().reason,
+      travel: get().travelText,
+      travelAmount: get().travelAmount,
+      departureDate: get().departureDate,
+      returnDate: get().returnDate,
+    };
+  },
 }));

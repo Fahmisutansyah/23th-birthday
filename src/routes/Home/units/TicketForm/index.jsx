@@ -28,8 +28,8 @@ const TicketForm = () => {
 
   useEffect(() => {
     if (zDeparture !== "") {
-      setDepartureDate(moment(zDeparture).toDate());
-      setReturnDate(moment(zReturn).toDate());
+      setDepartureDate(new Date(zDeparture));
+      setReturnDate(new Date(zReturn));
     }
   }, []);
 

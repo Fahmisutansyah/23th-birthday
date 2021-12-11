@@ -9,32 +9,71 @@ import FormTextArea from "../../../../components/FormTextArea";
 
 import HeaderTitle from "../HeaderTitle";
 
+import { sendEmail } from "../../../../utils/sendEmail";
+
 const BirthdayForm = ({ prev }) => {
   const [wishInput, setWishInput] = useState("");
   const setWish = useStore((state) => state.setWish);
   const dob = useStore((state) => state.dob);
   const [birthday, setBirthday] = useState("");
+  const [fromNow, setFromNow] = useState("");
+  const [today, setToday] = useState(true);
+
+  const getData = useStore((state) => state.getAll);
 
   useEffect(() => {
     setBirthday(moment(dob).add("23", "years").format("L"));
   }, []);
+  useEffect(() => {
+    setFromNow(moment(birthday).fromNow());
+  }, [birthday]);
+  useEffect(() => {
+    if (fromNow.includes("hours")) {
+      setToday(true);
+    } else {
+      setToday(false);
+    }
+  }, [fromNow]);
 
   const handlePrev = () => {
     setWish(wishInput);
     prev();
   };
 
+  const handleSubmit = () => {
+    setWish(wishInput);
+    sendEmail(getData())
+      .then((val) => {
+        console.log(val);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   return (
     <div className="flex flex-column items-center mt5-ns">
-      <HeaderTitle
-        headerText="Happy Birthday!"
-        subHeaderText="It's your 23th birthday!"
-        stepText="3/4"
-      />
+      {today ? (
+        <HeaderTitle
+          headerText="Happy Birthday!"
+          subHeaderText={`Its your ${moment().diff(
+            moment(dob),
+            "years"
+          )}rd birthday!`}
+          stepText="5/5"
+        />
+      ) : (
+        <HeaderTitle
+          headerText="Happy Birthday!"
+          subHeaderText={`${moment(birthday).fromNow()} was your birthday!`}
+          stepText="5/5"
+        />
+      )}
+
       <div className="flex flex-column br2 card pa4-ns items-center">
         <div className="w-100 mb3-ns flex flex-column">
           <p className="f3-ns bb">What is your wish for your birthday?</p>
-          <p className="f7-ns mt2-ns">{birthday}</p>
+          <p className="f7-ns mt2-ns">*Write as many wishes as you like!</p>
         </div>
         <div className="mt3-ns">
           <FormTextArea
@@ -60,7 +99,7 @@ const BirthdayForm = ({ prev }) => {
               className="mt3-ns"
               classType="primary"
               text="Submit"
-              // onClick={handlePrev}
+              onClick={handleSubmit}
             />
           </div>
         </div>

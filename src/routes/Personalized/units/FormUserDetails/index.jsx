@@ -5,6 +5,9 @@ import FormInput from "../../../../components/FormInput";
 import Button from "../../../../components/Button";
 import moment from "moment";
 
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 import FormDatePicker from "../../../Home/units/TicketForm/units/FormDatePicker";
 import HeaderTitle from "../HeaderTitle";
 import "./index.scss";
@@ -22,11 +25,15 @@ const FormUserDetail = ({ next }) => {
   const zGender = useStore((state) => state.gender);
   const zAddress = useStore((state) => state.address);
 
+  const MySwal = withReactContent(Swal);
+
   useEffect(() => {
     if (zName.length !== 0) {
       justOpened();
     }
   }, []);
+
+  const validate = async () => {};
 
   const justOpened = () => {
     setName(zName);
@@ -35,14 +42,33 @@ const FormUserDetail = ({ next }) => {
     setAddress(zAddress);
   };
 
-  const handleNext = () => {
-    submitForm(
-      name,
-      moment(dob).format("YYYY-MM-DD[T]HH:mm:ss.SSS[Z]"),
-      gender,
-      address
-    );
-    next();
+  const handleNext = async () => {
+    if (name !== "" && address !== "") {
+      if (
+        gender.toLowerCase() === "male" ||
+        gender.toLowerCase() === "female"
+      ) {
+        submitForm(
+          name,
+          moment(dob).format("YYYY-MM-DD[T]HH:mm:ss.SSS[Z]"),
+          gender,
+          address
+        );
+        next();
+      } else {
+        await MySwal.fire({
+          title: <strong>Oops!</strong>,
+          html: <i>Please fill out male or female!</i>,
+          icon: "warning",
+        });
+      }
+    } else {
+      await MySwal.fire({
+        title: <strong>Oops!</strong>,
+        html: <i>Please fill out all forms!</i>,
+        icon: "warning",
+      });
+    }
   };
 
   const handleNameChange = (e) => {
@@ -59,7 +85,7 @@ const FormUserDetail = ({ next }) => {
       <HeaderTitle
         headerText="Let us get to know you better"
         subHeaderText="General Information"
-        stepText="1/4"
+        stepText="1/5"
       />
       <div className="flex flex-column br2 card pa4-ns items-center">
         <FormInput

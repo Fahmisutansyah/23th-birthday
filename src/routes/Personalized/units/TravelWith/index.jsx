@@ -7,6 +7,7 @@ import Button from "../../../../components/Button";
 import FormTextArea from "../../../../components/FormTextArea";
 
 import HeaderTitle from "../HeaderTitle";
+import { validate } from "../../../../utils/oneStateValidation";
 
 const TravelWith = ({ next, prev }) => {
   const travelAmount = useStore((state) => state.travelAmount);
@@ -18,8 +19,7 @@ const TravelWith = ({ next, prev }) => {
     setTravelInput(travelText);
   }, []);
   const handleNext = () => {
-    setTravelText(travelInput);
-    next();
+    validate(travelInput, next, setTravelText);
   };
   const handlePrev = () => {
     setTravelText(travelInput);
@@ -30,7 +30,7 @@ const TravelWith = ({ next, prev }) => {
       <HeaderTitle
         headerText="Traveling With"
         subHeaderText=""
-        stepText="4/4"
+        stepText="4/5"
       />
       <div className="flex flex-column br2 card pa4-ns items-center">
         <div className="w-100 mb3-ns flex flex-column">

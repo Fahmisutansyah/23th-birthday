@@ -8,6 +8,8 @@ import FormTextArea from "../../../../components/FormTextArea";
 
 import HeaderTitle from "../HeaderTitle";
 
+import { validate } from "../../../../utils/oneStateValidation";
+
 const FutureForm = ({ next, prev }) => {
   const handleFuture = useStore((state) => state.handleFutureChange);
   const future = useStore((state) => state.future);
@@ -18,8 +20,7 @@ const FutureForm = ({ next, prev }) => {
   }, []);
 
   const handleNext = () => {
-    handleFuture(futureState);
-    next();
+    validate(futureState, next, handleFuture);
   };
   const handlePrev = () => {
     handleFuture(futureState);
@@ -27,7 +28,7 @@ const FutureForm = ({ next, prev }) => {
   };
   return (
     <div className="flex flex-column items-center mt5-ns">
-      <HeaderTitle headerText="Future" subHeaderText="" stepText="3/4" />
+      <HeaderTitle headerText="Future" subHeaderText="" stepText="3/5" />
       <div className="flex flex-column br2 card pa4-ns items-center">
         <div className="w-100 mb3-ns flex flex-column">
           <p className="f3-ns bb">

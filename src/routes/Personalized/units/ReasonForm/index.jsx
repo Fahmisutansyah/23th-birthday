@@ -8,6 +8,8 @@ import FormTextArea from "../../../../components/FormTextArea";
 
 import HeaderTitle from "../HeaderTitle";
 
+import { validate } from "../../../../utils/oneStateValidation";
+
 const ReasonForm = ({ next, prev }) => {
   const [reason, setReason] = useState("");
   const setReasonZ = useStore((state) => state.setReason);
@@ -18,8 +20,7 @@ const ReasonForm = ({ next, prev }) => {
   }, []);
 
   const handleNext = () => {
-    setReasonZ(reason);
-    next();
+    validate(reason, next, setReasonZ);
   };
 
   const handlePrev = () => {
@@ -29,7 +30,7 @@ const ReasonForm = ({ next, prev }) => {
 
   return (
     <div className="flex flex-column items-center mt5-ns">
-      <HeaderTitle headerText="Reason" subHeaderText="" stepText="2/4" />
+      <HeaderTitle headerText="Reason" subHeaderText="" stepText="2/5" />
       <div className="flex flex-column br2 card pa4-ns items-center">
         <div className="w-100 mb3-ns flex flex-column">
           <p className="f3-ns bb">
