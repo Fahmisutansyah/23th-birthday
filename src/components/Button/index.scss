@@ -1,0 +1,95 @@
+@import "../../assets/css/variables";
+
+.btn {
+  border: unset;
+  min-width: 100%;
+  min-height: 100%;
+  transition: 0.5s;
+  &:disabled {
+    opacity: 0.3;
+  }
+  &:focus {
+    box-shadow: unset;
+  }
+  &:hover {
+    background-color: #4f518c;
+    transition: 0.5s;
+  }
+  background-color: $primaryButtonBGColor;
+  .btn-text {
+    color: $primaryButtonTextColor;
+  }
+}
+
+// .btn {
+//   border: unset;
+//   padding: 10px 13px;
+//   &:disabled {
+//     opacity: 0.3;
+//   }
+
+//   &:focus {
+//     box-shadow: unset;
+//   }
+//   &:hover {
+//     // transform: scale(1.02);
+//     // opacity: 0.7;
+//     // transform: skewX(-10deg);
+
+//     &.btn-primary {
+//       background: $primaryButtonBGColor;
+//       color: $primaryButtonTextColor;
+//       .btn-text,
+//       .btn-icon {
+//         color: $primaryButtonTextColor;
+//         font-weight: 500;
+//       }
+//     }
+//     &.btn-secondary {
+//       background: $secondaryButtonBGColor;
+//       color: $secondaryButtonTextColor;
+//       .btn-text,
+//       .btn-icon {
+//         color: $secondaryButtonTextColor;
+//         font-weight: 500;
+//       }
+//     }
+//   }
+//   &.btn-single-toggle {
+//     background: $cardColorBG;
+//     border-radius: 100%;
+//     padding: 5px 11px;
+//     .btn-text {
+//       margin: 0;
+//     }
+//   }
+//   &.btn-primary {
+//     background: $primaryButtonTextColor;
+//     color: $primaryButtonBGColor;
+//     .btn-text,
+//     .btn-icon {
+//       color: $primaryButtonBGColor;
+//       font-weight: 500;
+//     }
+//   }
+//   &.btn-secondary {
+//     background: $secondaryButtonTextColor;
+//     color: $secondaryButtonBGColor;
+//     .btn-text,
+//     .btn-icon {
+//       color: $secondaryButtonBGColor;
+//       font-weight: 500;
+//     }
+//   }
+//   &.btn-outline-warning {
+//     border: 1px solid #ffc107;
+//   }
+//   .btn-text {
+//     margin-left: 10px;
+//     font-size: $smallerFontSize;
+//     font-weight: 300;
+//     &.no-icon {
+//       margin-left: 0;
+//     }
+//   }
+// }

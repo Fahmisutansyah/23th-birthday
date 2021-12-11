@@ -1,0 +1,15 @@
+@import "../../../../../../assets/css/variables";
+
+.tooltip-container {
+  // border-color: black;
+  width: 15.5vw;
+  // z-index: 99 !important;
+  position: absolute;
+  border: black;
+  background-color: $primaryButtonBGColor;
+  margin: 0;
+}
+.tooltip-container:hover {
+  cursor: pointer;
+  background-color: $secondaryButtonBGColor;
+}

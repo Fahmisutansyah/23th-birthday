@@ -1,0 +1,15 @@
+.layout-wrapper {
+  min-height: 100vh;
+  overflow: hidden;
+  width: 100%;
+}
+.wallpaper-bg {
+  background-image: url("../../assets/images/bg-3.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+}
+.wallpaper-css {
+  background: linear-gradient(#dabfff, transparent);
+  background-color: #907ad6; /*this your primary color*/
+}
