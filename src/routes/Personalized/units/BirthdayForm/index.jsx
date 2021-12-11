@@ -1,23 +1,29 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../../../zustand/store";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
+
 import moment from "moment";
 import "./index.scss";
 
 import Button from "../../../../components/Button";
 import FormTextArea from "../../../../components/FormTextArea";
+import LoadingOverlay from "../../../../components/LoadingOverlay";
 
 import HeaderTitle from "../HeaderTitle";
 
 import { sendEmail } from "../../../../utils/sendEmail";
 
 const BirthdayForm = ({ prev }) => {
+  const MySwal = withReactContent(Swal);
   const [wishInput, setWishInput] = useState("");
   const setWish = useStore((state) => state.setWish);
   const dob = useStore((state) => state.dob);
   const [birthday, setBirthday] = useState("");
   const [fromNow, setFromNow] = useState("");
   const [today, setToday] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
 
   const getData = useStore((state) => state.getAll);
 
@@ -40,19 +46,30 @@ const BirthdayForm = ({ prev }) => {
     prev();
   };
 
-  const handleSubmit = () => {
-    setWish(wishInput);
-    sendEmail(getData())
-      .then((val) => {
-        console.log(val);
-      })
-      .catch((err) => {
-        console.log(err);
+  const handleSubmit = async () => {
+    if (wishInput !== "") {
+      setIsLoading(true);
+      setWish(wishInput);
+
+      sendEmail(getData())
+        .then((val) => {
+          setIsLoading(false);
+        })
+        .catch((err) => {
+          setIsLoading(false);
+        });
+    } else {
+      await MySwal.fire({
+        title: <strong>Oops!</strong>,
+        html: <i>Please fill out the form!</i>,
+        icon: "warning",
       });
+    }
   };
 
   return (
     <div className="flex flex-column items-center mt5-ns">
+      <LoadingOverlay state={isLoading} />
       {today ? (
         <HeaderTitle
           headerText="Happy Birthday!"

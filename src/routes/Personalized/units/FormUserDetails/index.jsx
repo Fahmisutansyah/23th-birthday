@@ -33,8 +33,6 @@ const FormUserDetail = ({ next }) => {
     }
   }, []);
 
-  const validate = async () => {};
-
   const justOpened = () => {
     setName(zName);
     setDob(new Date(zDob));
