@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 //routes
 import Home from "./routes/Home";
 import Personalized from "./routes/Personalized";
+import Ticket from "./routes/Ticket";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -13,6 +14,7 @@ function App() {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/planning" element={<Personalized />} />
+        <Route exact path="/yourticket" element={<Ticket />} />
       </Routes>
     </Router>
     // <div className="App">

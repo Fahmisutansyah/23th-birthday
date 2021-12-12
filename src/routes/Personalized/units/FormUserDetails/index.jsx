@@ -106,7 +106,7 @@ const FormUserDetail = ({ next }) => {
           iconName="geo"
         />
         <div className="flex flex-column">
-          <p className="label-dob">DOB</p>
+          <p className="label-dob silver f6-ns">Date of Birth</p>
           <FormDatePicker
             selected={dob}
             onChange={(date) => setDob(date)}

@@ -1,6 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useStore } from "../../../../zustand/store";
+import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
@@ -24,6 +25,7 @@ const BirthdayForm = ({ prev }) => {
   const [fromNow, setFromNow] = useState("");
   const [today, setToday] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
 
   const getData = useStore((state) => state.getAll);
 
@@ -48,16 +50,18 @@ const BirthdayForm = ({ prev }) => {
 
   const handleSubmit = async () => {
     if (wishInput !== "") {
-      setIsLoading(true);
-      setWish(wishInput);
+      navigate("/yourticket");
+      // setIsLoading(true);
+      // setWish(wishInput);
 
-      sendEmail(getData())
-        .then((val) => {
-          setIsLoading(false);
-        })
-        .catch((err) => {
-          setIsLoading(false);
-        });
+      // sendEmail(getData())
+      //   .then((val) => {
+      //     setIsLoading(false);
+      //     navigate("/yourticket");
+      //   })
+      //   .catch((err) => {
+      //     setIsLoading(false);
+      //   });
     } else {
       await MySwal.fire({
         title: <strong>Oops!</strong>,
@@ -73,10 +77,7 @@ const BirthdayForm = ({ prev }) => {
       {today ? (
         <HeaderTitle
           headerText="Happy Birthday!"
-          subHeaderText={`Its your ${moment().diff(
-            moment(dob),
-            "years"
-          )}rd birthday!`}
+          subHeaderText={`Its your 23rd birthday!`}
           stepText="5/5"
         />
       ) : (
