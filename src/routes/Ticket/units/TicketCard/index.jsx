@@ -65,11 +65,11 @@ const TicketCard = ({ isAuthenticated }) => {
           </div>
           <div className="flex flex-column">
             <p className="silver">Flight No.</p>
-            <p>{isAuthenticated ? "GN67" : "N412"}</p>
+            <p>{isAuthenticated ? "N412" : "G420"}</p>
           </div>
           <div className="flex flex-column">
             <p className="silver">Class</p>
-            <p>Economy</p>
+            <p>{isAuthenticated ? "First Class" : "Economy"}</p>
           </div>
         </div>
       </div>

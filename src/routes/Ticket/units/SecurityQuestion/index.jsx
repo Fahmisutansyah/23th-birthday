@@ -8,7 +8,7 @@ import HeaderTitle from "../../../../components/HeaderTitle";
 import FormInput from "../../../../components/FormInput";
 import Button from "../../../../components/Button";
 
-const SecurityQuestion = ({ setShowTicket }) => {
+const SecurityQuestion = ({ setShowTicket, setIsAuthenticated }) => {
   const MySwal = withReactContent(Swal);
   const [answer, setAnswer] = useState("");
   const handleSubmit = async () => {
@@ -35,6 +35,7 @@ const SecurityQuestion = ({ setShowTicket }) => {
       }).then((result) => {
         if (result.isConfirmed === true || result.isDismissed === true) {
           setShowTicket(true);
+          setIsAuthenticated(true);
         }
       });
     }
