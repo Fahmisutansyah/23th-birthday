@@ -9,7 +9,7 @@ import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
 
 import FormDatePicker from "../../../Home/units/TicketForm/units/FormDatePicker";
-import HeaderTitle from "../HeaderTitle";
+import HeaderTitle from "../../../../components/HeaderTitle";
 import "./index.scss";
 
 const FormUserDetail = ({ next }) => {

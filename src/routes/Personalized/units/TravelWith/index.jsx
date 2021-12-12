@@ -6,7 +6,7 @@ import "./index.scss";
 import Button from "../../../../components/Button";
 import FormTextArea from "../../../../components/FormTextArea";
 
-import HeaderTitle from "../HeaderTitle";
+import HeaderTitle from "../../../../components/HeaderTitle";
 import { validate } from "../../../../utils/oneStateValidation";
 
 const TravelWith = ({ next, prev }) => {

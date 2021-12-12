@@ -12,7 +12,7 @@ import Button from "../../../../components/Button";
 import FormTextArea from "../../../../components/FormTextArea";
 import LoadingOverlay from "../../../../components/LoadingOverlay";
 
-import HeaderTitle from "../HeaderTitle";
+import HeaderTitle from "../../../../components/HeaderTitle";
 
 import { sendEmail } from "../../../../utils/sendEmail";
 
