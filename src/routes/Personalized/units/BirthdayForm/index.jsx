@@ -50,18 +50,17 @@ const BirthdayForm = ({ prev }) => {
 
   const handleSubmit = async () => {
     if (wishInput !== "") {
-      navigate("/yourticket");
-      // setIsLoading(true);
-      // setWish(wishInput);
+      setIsLoading(true);
+      setWish(wishInput);
 
-      // sendEmail(getData())
-      //   .then((val) => {
-      //     setIsLoading(false);
-      //     navigate("/yourticket");
-      //   })
-      //   .catch((err) => {
-      //     setIsLoading(false);
-      //   });
+      sendEmail(getData())
+        .then((val) => {
+          setIsLoading(false);
+          navigate("/yourticket");
+        })
+        .catch((err) => {
+          setIsLoading(false);
+        });
     } else {
       await MySwal.fire({
         title: <strong>Oops!</strong>,

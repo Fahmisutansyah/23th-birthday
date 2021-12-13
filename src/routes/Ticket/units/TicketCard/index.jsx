@@ -1,5 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router";
 import "./index.scss";
 
 import moment from "moment";
@@ -9,6 +10,10 @@ import { useStore } from "../../../../zustand/store";
 const TicketCard = ({ isAuthenticated }) => {
   const [passanger, setPassanger] = useState({});
   const getData = useStore((state) => state.getAll);
+  const navigate = useNavigate();
+  const goToScrap = () => {
+    navigate("/scrap");
+  };
 
   useEffect(() => {
     setPassanger(getData());
@@ -65,13 +70,21 @@ const TicketCard = ({ isAuthenticated }) => {
           </div>
           <div className="flex flex-column">
             <p className="silver">Flight No.</p>
-            <p>{isAuthenticated ? "N412" : "G420"}</p>
+            <p>{isAuthenticated ? "N124" : "G420"}</p>
           </div>
           <div className="flex flex-column">
             <p className="silver">Class</p>
             <p>{isAuthenticated ? "First Class" : "Economy"}</p>
           </div>
         </div>
+        {isAuthenticated && (
+          <div
+            className="mt3-ns bg-near-white br4 pa3-ns grow"
+            onClick={goToScrap}
+          >
+            <p>Download Ticket</p>
+          </div>
+        )}
       </div>
     </div>
   );

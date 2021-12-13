@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./routes/Home";
 import Personalized from "./routes/Personalized";
 import Ticket from "./routes/Ticket";
+import Scrapbook from "./routes/Scrapbook";
+import Letter from "./routes/Letter";
 
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -15,6 +17,8 @@ function App() {
         <Route exact path="/" element={<Home />} />
         <Route exact path="/planning" element={<Personalized />} />
         <Route exact path="/yourticket" element={<Ticket />} />
+        <Route exact path="/scrap" element={<Scrapbook />} />
+        <Route exact path="/letter" element={<Letter />} />
       </Routes>
     </Router>
     // <div className="App">
